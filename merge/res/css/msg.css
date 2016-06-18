@@ -1,0 +1,147 @@
+/**
+ *
+ * alertload style
+ *
+ */
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: #000;
+  opacity: 0.16;
+  filter: alpha(opacity=16);
+  z-index: 200;
+  overflow: hidden;
+}
+
+._mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: #000;
+  opacity: 0.16;
+  filter: alpha(opacity=16);
+  z-index: 100;
+  overflow: hidden;
+}
+
+.msg {
+  overflow: hidden;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  position: fixed;
+  left: 10px;
+}
+
+.msg .msg-btn {
+  height: 44px;
+  width: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+}
+
+.msg .msg-btn button {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  background: #fff;
+  display: block;
+  padding: 0;
+  color: #333;
+  font-family: Arial,"Microsoft YaHei";
+  border: none;
+  font-size: 16px;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+}
+
+.msg .msg-btn button:hover {
+  background: #f3f3f3;
+}
+
+.msg .msg-btn .btnok {
+  border-right: 1px solid #e7e7e7;
+  width: 137px;
+}
+
+.msg .msg-btn .btnno {
+  width: 137px;
+}
+
+.msg .msg-btn .btnno a {
+  color: #fa9090;
+  display: block;
+}
+
+.msg .msg-btn .sure {
+  width: 274px;
+}
+
+.msg p {
+  text-align: center;
+  color: #333;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.msg p .name {
+  color: #72d153;
+  font-style: normal;
+  font-weight: normal;
+  list-style: none;
+  margin-right: 20px;
+  display: inline-block;
+}
+
+.msg p .tel {
+  color: #72d153;
+  font-style: normal;
+  font-weight: normal;
+  list-style: none;
+  display: inline-block;
+}
+
+.msg .msg-content {
+  background: #fff;
+  border-bottom: 1px solid #e7e7e7;
+  padding: 15px 5px 10px 5px;
+  overflow: hidden;
+  min-height: 40px;
+  clear: both;
+}
+
+.msg .msg-content .set-text {
+  color: #333;
+  font-family: Arial,"Microsoft YaHei";
+  font-size: 14px;
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  padding: 3px 0;
+  text-indent: 1em;
+}
+
+.msg .msg-header {
+  background: #fff;
+  padding: 0px 10px;
+  font-size: 16px;
+  font-family: Arial,"Microsoft YaHei";
+  overflow: hidden;
+  text-align: center;
+  line-height: 40px;
+  height: 40px;
+  clear: both;
+  color: #333;
+}

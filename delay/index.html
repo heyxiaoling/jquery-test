@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <link rel="stylesheet" type="text/css" href="res/css/common.css">
+	<title>tap</title>
+</head>
+<body>
+    <script type="text/javascript" src="res/js/lib/jquery.js"></script>
+    <script type="text/javascript">
+        
+        /** 
+            KEQueue —— Events Queue 
+            @Author ake by 2010-04-25 
+            http://www.cnblogs.com/akecn 
+
+            @param data 事件队列中每个事件都会将该参数作为第一个参数传递下去，除非通过KEQueue.status修改它的值。 
+            @method next(Function) 下一个要执行的事件。 
+            @method wait(Number) 等待一定时间后执行下一个事件。 
+            @method sleep() 停止事件序列的执行。 
+            @method wake() 继续执行事件序列。 
+        **/ 
+        var KEQueue = function(data) { 
+            this.staticQueue = []; 
+            this.asyncQueue = []; 
+            this.status = "running"; 
+            this.result = data; 
+            return this; 
+        } 
+        KEQueue.prototype = { 
+            next:function(callback, async) {//添加一个方法 
+                if(!!async) { 
+                    this.staticQueue.push("async");//如果是异步方法（会有延时效果的方法）就添加标识 
+                    this.asyncQueue.push(callback);//延时方法的存放数组 
+                }else { 
+                    this.staticQueue.push(callback);//直接触发的方法的存放数组 
+                } 
+                return this; 
+            }, 
+            wait:function(delay) {//延迟执行序列 
+                var self = this; 
+                this.next(function() {//模拟添加一个延时方法 
+                    setTimeout(function() { 
+                        self.wake.call(self) 
+                    }, delay); 
+                },true); 
+                return this; 
+            }, 
+            go:function() {//按事件添加的先后顺序依次执行事件 
+                if(this.staticQueue.length == 0) return; 
+
+                while(this.staticQueue.length > 0) { 
+                    if(this.status === "sleep") return; 
+
+                    var fun = this.staticQueue.shift(); 
+                    if(typeof fun == "string" && fun == "async") { 
+                        fun = this.asyncQueue.shift(); 
+                        fun(this.result); 
+                        this.sleep(); 
+                    }else { 
+                        fun(this.result); 
+                    } 
+                } 
+            }, 
+            sleep:function() { 
+                this.status = "sleep"; 
+            }, 
+            wake:function() { 
+                this.status = "running"; 
+                this.go(); 
+            } 
+        } 
+    </script>
+</body>
+</html>
