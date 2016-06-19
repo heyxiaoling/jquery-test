@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>grep</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		function grepp(elems, callback, invert){
+			var callbackInverse,
+				matches = [],
+				i = 0,
+				length = elems.length,
+				callbackExpect = !invert;
+				console.log(invert);
+			// Go through the array, only saving the items
+			// that pass the validator function
+			for ( ; i < length; i++ ) {
+				callbackInverse = !callback( elems[ i ], i );
+				if ( callbackInverse !== callbackExpect ) {
+					matches.push( elems[ i ] );
+				}
+			}
+
+			return matches;
+		}
+
+		var arr = [1, 2, 3, 4];
+
+		arr = grepp(arr,function(n, i){
+			return n > 2;
+		});
+
+		console.log(arr);
+
+		var arr2 = [1, 2, 3, 4];
+
+		arr2 = grepp(arr,function(n, i){
+			return n > 2;
+		},true);
+
+		console.log(arr2);
+
+		
+
+		
+	</script>
+</body>
+</html>
