@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>holdReady</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		// $.getScript('res/js/a.js',function(){});
+		// $(function(){
+		// 	alert(a);
+
+		// })
+		$.holdReady( true );
+		$.getScript('res/js/a.js',function(){
+			$.holdReady( false );
+		});
+		$(function(){
+			alert(a);
+
+		})
+	</script>
+</body>
+</html>

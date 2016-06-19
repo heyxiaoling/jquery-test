@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>extend</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$.extend({
+				aaa: function(){
+					alert(1);
+				},
+				bbb: function(){
+					alert(2);
+				}
+			});
+
+			$.fn.extend({
+				aaa: function(){
+					alert(3);
+				},
+				bbb:function(){
+					alert(4);
+				}
+			});
+
+			$.aaa();
+			$.bbb();
+			$().aaa();
+			$().bbb();
+
+
+
+			//$.extend -> this -> $ -> this.a -> $.aaa()
+			//$.fn.extend -> this -> $.fn -> $.prototype -> $().aaa()
+			// 在原型上调用构造函数必须是jquery对象 
+			// 原型下面扩张方法，必须通过对象去调用
+		})
+	</script>
+</body>
+</html>
