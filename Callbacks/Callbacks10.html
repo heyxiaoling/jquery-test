@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Callbacks</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			function aaa(){
+				alert(1);
+			}
+
+			function bbb(){
+				alert(2);
+			}
+
+			//var cb = $.Callbacks( 'memory' );
+			// cb.add( aaa );
+
+			// cb.fire();  //  1,2
+
+			// cb.lock();	// 只禁止fire
+
+			// cb.add( bbb );
+
+			// cb.fire();  // 无
+
+			var cb = $.Callbacks();
+
+			cb.add( aaa );
+
+			cb.fire();
+
+			cb.locked();
+
+			cb.add( bbb );
+
+			cb.fire();
+		})
+		
+
+		
+	</script>
+</body>
+</html>

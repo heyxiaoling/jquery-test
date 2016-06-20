@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Callbacks</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			function aaa(){
+				alert(1);
+			}
+
+			function bbb(){
+				alert(2);
+			}
+
+			var cb = $.Callbacks( 'unique' );
+			cb.add( aaa );
+			cb.add( aaa );
+
+			cb.fire();
+		})
+		
+
+		
+	</script>
+</body>
+</html>

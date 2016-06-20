@@ -2,14 +2,29 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>grep</title>
+	<title>Callbacks</title>
 </head>
 <body>
 	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
 	<script type="text/javascript">
-		var a = 1, b = 1, c = a == b;
-		console.log(c);
+		$(function(){
+			function aaa(){
+				alert(1);
+			}
 
+			function bbb(){
+				alert(2);
+			}
+
+			var cb = $.Callbacks();
+			cb.add( aaa );
+			cb.add( bbb );
+
+			cb.fire();
+		})
+		
+
+		
 	</script>
 </body>
 </html>

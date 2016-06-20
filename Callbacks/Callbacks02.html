@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Callbacks</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var cb = $.Callbacks();
+
+			function aaa(){
+				alert(1);
+			}
+
+			cb.add( aaa );
+
+
+			(function(){
+				function bbb(){
+					alert(2);
+				}
+
+				cb.add( bbb );
+
+			})()
+			
+			
+
+			cb.fire();
+		})
+		
+
+		
+	</script>
+</body>
+</html>
