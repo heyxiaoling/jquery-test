@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>data</title>
+</head>
+<body>
+	<div id="div1" data-name-all="hey">abc</div>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			alert( $('#div1').get(0).dataset.nameAll );
+		})
+	</script>
+</body>
+</html>
