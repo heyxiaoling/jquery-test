@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Deferred</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			//pipe
+			var dfd = $.Deferred();
+
+			setTimeout(function(){
+				dfd.resolve('hello,');
+			},1000);
+
+			var newDfd = dfd.pipe(function(){
+				return arguments[0] + "hey";
+			});
+
+			newDfd.done(function(){
+				alert(arguments[0]);
+			});
+		})
+		
+
+		
+	</script>
+</body>
+</html>

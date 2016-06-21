@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Deferred</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			//总是执行
+			var dfd = $.Deferred();
+
+			setTimeout(function(){
+				
+				dfd.resolve();
+			},1000);
+
+			dfd.always(function(){
+				alert(222);
+			});
+		})
+		
+
+		
+	</script>
+</body>
+</html>

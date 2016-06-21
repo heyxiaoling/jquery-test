@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Deferred</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+
+			var dfd = $.Deferred();
+
+			setTimeout(function(){
+				alert(111);
+				dfd.resolve();
+			},1000);
+
+			dfd.done(function(){
+				alert(222);
+			});
+		})
+		
+
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Deferred</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			//分步骤
+			var dfd = $.Deferred();
+
+			setTimeout(function(){
+				dfd.reject();
+				//dfd.resolve();
+			},1000);
+
+			dfd.then(function(){
+				alert(1);
+			},function(){
+				alert(2);
+			},function(){
+				alert(3);
+			});
+		})
+		
+
+		
+	</script>
+</body>
+</html>

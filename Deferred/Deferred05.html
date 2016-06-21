@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Deferred</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			// $.ajax({
+			// 	url: 'xxx.php',
+			// 	success: fuction(){
+			// 		alert('成功');
+			// 	},
+			// 	error: function(){
+			// 		alert('失败');
+			// 	}
+			// });
+
+			$.ajax('xxx.php').done(function(){alert('成功'); }).fail(function(){alert('失败');});
+		})
+		
+
+		
+	</script>
+</body>
+</html>

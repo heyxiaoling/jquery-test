@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Deferred</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+
+			var cb = $.Callbacks();
+
+			setTimeout(function(){
+				alert(111);
+				cb.fire();
+			},1000);
+
+			cb.add(function(){
+				alert(222);
+			});
+		})
+		
+
+		
+	</script>
+</body>
+</html>

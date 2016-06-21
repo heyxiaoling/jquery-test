@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Deferred</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			//$.when()
+			function aaa(){
+				var dfd = $.Deferred();
+				dfd.resolve();
+				return dfd;
+			}
+
+			function bbb(){
+				var dfd = $.Deferred();
+				//dfd.resolve(); //完成
+				dfd.reject();  //失败
+				//return dfd;
+			}
+			
+			//  aaa, bbb, 都完成了才触发
+			$.when(aaa(),123).done(function(){
+				alert('成功');
+			}).fail(function(){
+				alert('失败');
+			});
+			// $.when(aaa(),bbb()).done(function(){
+			// 	alert('成功');
+			// }).fail(function(){
+			// 	alert('失败');
+			// });
+		})
+		
+
+		
+	</script>
+</body>
+</html>
