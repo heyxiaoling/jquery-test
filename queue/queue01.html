@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>data</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			//防止对象被修改
+			var obj = { name: "hey" };
+			Object.freeze( obj );
+			obj.name = 'xiaoling';
+
+			alert( obj.name );
+		})
+		
+
+		
+	</script>
+</body>
+</html>
