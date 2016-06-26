@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prop</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.div1').on('click',function(){
+				alert(1);
+			});
+
+			$('span').on('click',function(ev){
+				alert(2);
+				//ev.stopPropagation();
+				ev.stopImmediatePropagation();
+			});
+
+			$('span').on('click',function(ev){
+				alert(3);
+			});
+		})
+		
+	</script>
+	<div class="div1">aaa <span>ccc</span></div>
+</body>
+</html>

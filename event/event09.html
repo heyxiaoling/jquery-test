@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prop</title>
+	<style type="text/css">
+		.popupDiv{width:300px;background:#fff;border:1px solid #ccc;display:none;position:relative;top:-1px;}
+	</style>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#moShow").mouseenter(function(){
+			
+				$("#popupDiv").show();	
+			
+			});
+			
+			$("#moShow , #popupDiv").mouseleave(function(e) {
+				//在这里做判断，只有当鼠标的去向与popup层无关的时候，我们才关闭popup层
+				var target = e.relatedTarget;
+				
+				if(!target || (target && target.id != "popupDiv" && target.id != "moShow" && $(target).parents("#popupDiv , #moShow").length == 0)){
+					$("#popupDiv").hide();
+				}
+		
+	        });
+				
+		})
+	</script>
+	<a href="javascript:void(0)" id="moShow">mouseover</a>
+	<div id="popupDiv" class="popupDiv">This is related div This is related div This is related div</div>
+</body>
+</html>

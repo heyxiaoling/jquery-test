@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prop</title>
+</head>
+<body>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			$('input').focus(function(){
+				$(this).css({'background':'red'});
+			});
+
+			$('input').trigger('focus');
+			//$('input').triggerHandler('focus');  //不会触发当前事件的默认行为  //当前指光标之类的
+		})
+		
+
+		
+	</script>
+	<div class="div1">aaa</div>
+	<input type="text" value ="124">
+</body>
+</html>

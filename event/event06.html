@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prop</title>
+</head>
+<body>
+	<script type="text/javascript">
+		document.onkeypress = function(ev){
+			var ev = ev || window.event;
+			alert(ev.charCode);  //charCode keyCode
+		};
+
+		document.onkeydown = function(){
+			var ev = ev || window.event;
+			alert(ev.keyCode);  //charCode keyCode
+		}
+		/**
+		*	  ie8 下不支持 ev.which  charCode 在ie8 也不支持 
+		*   	在keypress时，keyCode都是0
+		*/
+	</script>
+	<div class="div1">aaa</div>
+</body>
+</html>
