@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>data</title>
+</head>
+<body>
+	<span>dsaasd</span><span>dsaasd</span>
+	<div id="div1">
+		<span>1</span>
+		<em>2</em>
+		<span>1</span>
+		<em>2</em>
+		<span>1</span>
+		<em>2</em>
+	</div>
+	<span>vv</span>
+	<span>vv</span>
+	<span>vv</span>
+	<script type="text/javascript" src="res/js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('span','#div1').on('click',function(){
+				alert($(this,'#div1').index('span'));
+			});
+		})
+		
+
+		
+	</script>
+</body>
+</html>

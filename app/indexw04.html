@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- （1）利用hash值来改变 -->
+
+<input type="button" value="随机选取" id="input1">
+<div id="div1">DIV1</div>
+<script>
+	var oIn=document.getElementById('input1'),oDiv=document.getElementById("div1");
+	var json={};
+	oIn.onclick=function(){
+		var num=Math.random();
+		var arr=randomNum(35,7);    
+		oDiv.innerHTML=arr;
+		json[num]=arr;
+		window.location.hash=num;
+	}
+
+	window.onhashchange=function(){
+		oDiv.innerHTML=json[window.location.hash.substring(1)];
+	}
+	function randomNum(iAll,iNow){
+		var arr=[];
+		var newArr=[];
+		for(var i=1;i<=iAll;i++){
+			arr.push(i);
+		}
+		for(var i=0;i<iNow;i++){
+			newArr.push(arr.splice(Math.floor(Math.random()*arr.length),1));
+		}
+
+		return newArr;
+
+	}
+
+
+	//服务器版本
+	oInput.onclick = function(){
+
+		var arr = randomNum(35,7);
+
+		history.pushState(arr,'',arr);
+
+		oDiv.innerHTML = arr;
+
+	};
+
+	window.onpopstate = function(ev){
+
+		oDiv.innerHTML = ev.state;
+
+	};
+</script>
+</body>
+</html>

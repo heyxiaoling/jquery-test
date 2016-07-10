@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<section data-route="index" data-page="index">1</section>
+	<section data-route="neiye1" data-page="neiye1">2
+		<a href="#/index"  class="taplink"  data-href="books" data-way="back">#/books</a>
+	</section>
+	<section data-route="neiye2" data-page="neiye2">3</section>
+	<section data-route="neiye3" data-page="neiye3">4</section>
+	<ul>
+		<li><a href="#/index" class="taplink"  data-href="author" data-way="hide">#/author</a></li>
+		<li><a href="#/neiye1"  class="taplink"  data-href="books" data-way="left-in">#/books</a></li>
+		<li></li>
+	</ul>
+	<script type="text/javascript" src="./res/js/lib/jquery.js"></script>
+	<script type="text/javascript" src="./res/js/lib/director.js"></script>
+	<script type="text/javascript">
+		
+		var historyobj = {
+			onpage:'',//当前页面
+			route1:{
+				route:'index',
+				way:'show'
+			},
+			route2:{
+				route:'neiye1',
+				way:'left-in'
+			}
+
+		};
+		var allpage = $('section');
+
+
+		$.each(arr,function(i,v){
+
+		});
+		// 当前环境支持的点击事件
+		var $doc =$(document)
+		var tapEvent = (function() {
+	    	return "createTouch" in document ? 'tap':'click'
+	  	})()
+
+	  	// 禁止链接默认点击事件
+		$doc.on('click', 'a.preventlink, a.taplink', function(event) {
+	    	event.preventDefault()
+	    	event.stopPropagation()
+	  	})
+
+		// 点击.taplink转场
+		$doc.on(tapEvent, '.taplink', function(event) {
+			var $currentTarget = $(event.currentTarget),
+			    $target = $(event.target),
+			    hash = $currentTarget.attr('href') || $currentTarget.attr('data-href'),
+			    way = $currentTarget.attr('data-way') || null;
+			if($target.closest('.notaplink').length)
+			  return $doc.trigger('video:remove', {video:app.cache.curVideo})
+
+			$currentTarget.trigger('spa:a', {hash:hash,way:way})
+
+			// event.preventDefault()// event.stopPropagation()
+		})
+		$doc.on('spa:a', function(event, options) {
+			window.location.href = options.hash + "-" +options.way
+		})
+		// 防止点击穿透
+		if(tapEvent =='tap') {
+			$doc.on('touchstart', 'a', function(event) {
+			  var $target =$(event.currentTarget)
+			  $target.data('taptime', +newDate())
+			})
+
+			$doc.on('click', 'a', function(event) {
+			  var $target =$(event.currentTarget),
+			      taptime =$target.data('taptime')
+
+			  if(!taptime || (+newDate() - taptime >500)) {
+			    event.preventDefault()
+			    event.stopPropagation()
+			  }
+			})
+		}
+
+		function getHash(url) {
+			url = url || location.href
+			return url.replace(/^[^#]*#?\/?(.*)\/?$/, '$1')
+		}
+
+		function parseQueryString(str) {
+		    if(str == "" || typeof str == "undefined") {
+		        str = location.href.split("?");
+		        str = str.pop();
+		    }
+		    var reg = /(([^?&=]+)(?:=([^?&=]*))*)/g;
+		    var result = {};
+		    var match;
+		    var key;
+		    var value;
+		    while (match = reg.exec(str)) {
+		        key = match[2];
+		        value = match[3] || '';
+		        result[key] = decodeURIComponent(value);
+		    }
+		    return result;
+		}
+
+		// 阻塞鼠标和手势操作
+		function preventEventHandle(evnet) {
+			event.stopPropagation()
+			event.preventDefault()
+		}
+
+
+		var allroutes = function(){
+			var route = window.location.hash.slice(2).split('-')[0],
+				way = window.location.hash.slice(2).split('-')[1],
+                sections = $('section'),
+                section;
+            //需要显示的页面
+            //定义一个页面显示动画的变量
+            var pageanimate = way ? way : '';
+            section = sections.filter('[data-route=' + route + ']');
+            
+
+            switch(way){
+            	case '':
+            		section.show(250);
+            	break;
+            	case 'left-in':
+            		section.trigger('page:in',{way:'left'});
+            		historyobj.route.way = 'left-in';
+            		historyobj.onpage = section;
+            	break;
+            	case 'back':
+            		//对页面保存的way取反
+            		var _way = historyobj.onpage.way === 'left' ? 'right' : ''; 
+            		historyobj.onpage.trigger('page:back',{way:_way})
+            	break;
+            }
+            //直接显示隐藏
+            if (section.length) {
+              //sections.hide(250);
+              section.show(250);
+            }
+            //返回的情况
+            if()
+		}
+		$doc.on('spa:in', function(event, options) {
+			switch(options.way){
+				case 'left':
+					this.add('left-in');
+				break;
+			}
+		})
+		var routes = {
+	        '/author': showAuthorInfo,
+	        '/books': listBooks
+	    };
+
+		var router = Router(routes);
+
+		router.configure({
+		on: allroutes
+		});
+		router.init();
+
+
+	</script>
+</body>
+</html>
